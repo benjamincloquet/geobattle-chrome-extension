@@ -1,3 +1,0 @@
-(function retrieveChallengeToken() {
-  return 'token';
-}());
