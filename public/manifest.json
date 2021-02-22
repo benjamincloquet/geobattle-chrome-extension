@@ -1,8 +1,21 @@
 {
   "name": "GeoBattle",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "manifest_version": 2,
   "browser_action": {
-    "default_popup": "index.html"
-  }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.geoguessr.com/*"],
+      "js": ["geoguessr.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://www.geoguessr.com/*"
+  ]
 }
