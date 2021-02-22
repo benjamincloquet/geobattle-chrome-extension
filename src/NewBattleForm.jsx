@@ -34,8 +34,7 @@ const NewBattleForm = () => {
   } = useForm({
     onSubmit: async (values) => {
       try {
-        const res = await axios.post(`${process.env.API_URL}/battle`, { profile, params: values });
-        console.log(res.data.battle);
+        await axios.post(`${process.env.API_URL}/battle`, { profile, params: values });
         setMeta((meta) => ({ ...meta, error: false }));
       } catch (err) {
         setMeta((meta) => ({ ...meta, error: "Couldn't create a new battle !" }));

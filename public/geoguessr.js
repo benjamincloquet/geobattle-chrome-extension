@@ -8,7 +8,6 @@ const fetchProfile = async (callback) => {
   }
 };
 
-// eslint-disable-next-line no-undef
 chrome.runtime.onMessage.addListener(
   (message, sender, sendResponse) => {
     if (message.type === 'profile') {
