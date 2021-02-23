@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useForm, useField } from 'react-form';
 import { useUserState } from './userContext';
 
@@ -27,7 +27,7 @@ const BattleIdField = () => {
 
 const JoinBattleForm = () => {
   const { profile } = useUserState();
-  // const history = useHistory();
+  const history = useHistory();
 
   const {
     Form, meta: {
@@ -36,10 +36,9 @@ const JoinBattleForm = () => {
   } = useForm({
     onSubmit: async (values) => {
       try {
-        const res = await axios.post(`${process.env.API_URL}/join`, { profile, params: values });
-        console.log(res.data.battle);
+        await axios.post(`${process.env.API_URL}/join`, { profile, params: values });
         setMeta((meta) => ({ ...meta, error: false }));
-        // history.push(`/battle/${values.battleId}`);
+        history.push(`/battle/${values.battleId}`);
       } catch (err) {
         setMeta((meta) => ({ ...meta, error: "Couldn't join battle !" }));
       }

@@ -45,8 +45,7 @@ const NewChallengeForm = ({ battleId, onAfterSubmit }) => {
   } = useForm({
     onSubmit: async (values) => {
       try {
-        const res = await axios.post(`${process.env.API_URL}/challenge`, { profile, params: { ...values, battleId } });
-        console.log(res.data.battle);
+        await axios.post(`${process.env.API_URL}/challenge`, { profile, params: { ...values, battleId } });
         setMeta((meta) => ({ ...meta, error: false }));
         onAfterSubmit();
       } catch (err) {

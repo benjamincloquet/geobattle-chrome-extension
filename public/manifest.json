@@ -5,7 +5,11 @@
   "browser_action": {
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "popup-background.js",
+      "challenge-background.js",
+      "history-background.js"
+    ]
   },
   "content_scripts": [
     {
@@ -16,6 +20,7 @@
   "permissions": [
     "tabs",
     "webRequest",
+    "storage",
     "https://www.geoguessr.com/*"
   ]
 }

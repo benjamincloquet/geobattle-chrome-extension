@@ -1,29 +1,11 @@
-const setPopup = (popup) => {
-  chrome.browserAction.setPopup({ popup });
-};
-
-const queryTabsAndSetPopup = () => {
-  chrome.tabs.query({ active: true, url: 'https://www.geoguessr.com/*' }, (tabs) => {
-    const popup = tabs[0] ? 'index.html' : '';
-    setPopup(popup);
-  });
-};
-
-chrome.tabs.onActivated.addListener(() => {
-  queryTabsAndSetPopup();
-});
-
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (tab.active && changeInfo.status === 'complete') {
-    queryTabsAndSetPopup();
-  }
-});
+const GEOGUESSR_API_URL = 'https://www.geoguessr.com/api/v3';
+const API_URL = 'http://localhost:5000/api';
 
 const isChallengeURL = (url) => url.includes('challenges/') && !url.includes('invite');
 
 const getProfileId = async () => {
   try {
-    const res = await fetch('https://www.geoguessr.com/api/v3/profiles/me');
+    const res = await fetch(`${GEOGUESSR_API_URL}/profiles/me`);
     const json = await res.json();
     return json.id;
   } catch (err) {
@@ -45,7 +27,7 @@ const getChallengeToken = async (url) => {
 
 const getGameToken = async (challengeToken) => {
   try {
-    const res = await fetch(`https://www.geoguessr.com/api/v3/challenges/${challengeToken}/game`);
+    const res = await fetch(`${GEOGUESSR_API_URL}/challenges/${challengeToken}/game`);
     const json = await res.json();
     return json.token;
   } catch (err) {
@@ -64,7 +46,7 @@ const sendResult = async (token, result) => {
       },
       body: JSON.stringify({ token, result }),
     };
-    await fetch('http://localhost:5000/api/result', options);
+    await fetch(`${API_URL}/result`, options);
   } catch (err) {
     console.log(err);
   }
@@ -98,7 +80,7 @@ const hasPlayerJoinedChallenge = async (profileId, token) => {
       },
       body: JSON.stringify({ profileId, token }),
     };
-    await fetch('http://localhost:5000/api/joined', options);
+    await fetch(`${API_URL}/joined`, options);
     return true;
   } catch (err) {
     return false;
@@ -112,7 +94,7 @@ const onChallengeStarted = async (token) => {
     if (gameToken) {
       chrome.webRequest.onResponseStarted.addListener(
         onGameResult(token),
-        { urls: [`https://www.geoguessr.com/api/v3/games/${gameToken}`] },
+        { urls: [`${GEOGUESSR_API_URL}/games/${gameToken}`] },
         [],
       );
     }
@@ -128,6 +110,6 @@ chrome.webRequest.onResponseStarted.addListener(
       }
     }
   },
-  { urls: ['https://www.geoguessr.com/api/v3/challenges/*'] },
+  { urls: [`${GEOGUESSR_API_URL}/challenges/*`] },
   [],
 );

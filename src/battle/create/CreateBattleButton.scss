@@ -1,0 +1,9 @@
+@import "../../colors.scss";
+
+.create-battle-button {
+  background: $green;
+
+  &:hover {
+    background: rgba($green, 0.9);
+  }
+}

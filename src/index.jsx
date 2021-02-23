@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Popup from './Popup';
+import { MemoryRouter as Router } from 'react-router-dom';
+import Popup from './popup/Popup';
 import { UserProvider } from './userContext';
-import './index.css';
+import './index.scss';
 
 ReactDOM.render(
   <UserProvider>
-    <Popup />
+    <Router>
+      <Popup />
+    </Router>
   </UserProvider>, document.getElementById('root'),
 );

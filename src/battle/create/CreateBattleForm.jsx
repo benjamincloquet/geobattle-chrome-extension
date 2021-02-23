@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm, useField } from 'react-form';
-import { useUserState } from './userContext';
+import { useUserState } from '../../userContext';
 
 const validateBattleName = (value) => {
   if (!value) {
@@ -24,7 +24,7 @@ const BattleNameField = () => {
   );
 };
 
-const NewBattleForm = () => {
+const CreateBattleForm = () => {
   const { profile } = useUserState();
 
   const {
@@ -60,4 +60,4 @@ const NewBattleForm = () => {
   );
 };
 
-export default NewBattleForm;
+export default CreateBattleForm;

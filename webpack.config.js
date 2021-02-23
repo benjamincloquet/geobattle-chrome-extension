@@ -29,6 +29,11 @@ module.exports = (env) => ({
           limit: 10000,
         },
       },
+      {
+        test: /\.scss?$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   resolve: {
