@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import { useForm } from 'react-form';
+import { useHistory } from 'react-router-dom';
 import { useUserState } from '../../userContext';
 import BattleNameField from './BattleNameField';
 
 const CreateBattleForm = () => {
   const { profile } = useUserState();
+  const history = useHistory();
 
   const {
     Form, meta: {
@@ -15,6 +17,7 @@ const CreateBattleForm = () => {
     onSubmit: async (values) => {
       try {
         await axios.post(`${process.env.API_URL}/battle`, { profile, params: values });
+        history.push(`/battle/${values.battleId}`);
         setMeta((meta) => ({ ...meta, error: false }));
       } catch (err) {
         setMeta((meta) => ({ ...meta, error: "Couldn't create a new battle !" }));

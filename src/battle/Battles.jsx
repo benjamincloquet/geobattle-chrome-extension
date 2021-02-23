@@ -9,16 +9,21 @@ const Battles = () => {
   useFetchBattles();
   const { battles } = useUserState();
 
-  const renderBattles = () => battles.map((battle) => (
-    <Link key={battle.id} className="battles__link" to={`/battle/${battle.id}`}>{battle.name}</Link>
-  ));
+  const renderBattles = () => {
+    if (battles.length === 0) {
+      return <p>Create or join a battle to start playing !</p>;
+    }
+    return battles.map((battle) => (
+      <Link key={battle.id} className="battles__link" to={`/battle/${battle.id}`}>{battle.name}</Link>
+    ));
+  };
 
   return (
     <>
       <h1 className="title">My battles</h1>
       <Divider />
       <div className="battles">
-        {battles ? renderBattles() : <p>Create or join a battle to start playing !</p>}
+        {battles ? renderBattles() : null}
       </div>
     </>
   );

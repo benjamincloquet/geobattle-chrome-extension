@@ -20,12 +20,40 @@ const Battle = () => {
       <p className="battle__id">{battleId}</p>
       <Divider />
       <div className="battle">
-        <div className="battle__challenges">
-          {challenges.map((challenge, index) => (
-            <Challenge key={challenge.id} challenge={challenge} index={index} />
-          ))}
-        </div>
-        <Divider />
+        {challenges.length > 0 ? (
+          <>
+            <div className="battle__challenges">
+              {challenges.map((challenge, index) => (
+                <Challenge key={challenge.id} challenge={challenge} index={index} />
+              ))}
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
+            </div>
+            <Divider />
+          </>
+        ) : null }
         <h1 className="title">Add a challenge</h1>
         {profile.id === battle.profileId
           ? (
