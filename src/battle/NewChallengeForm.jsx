@@ -1,39 +1,9 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useForm, useField } from 'react-form';
-import { useUserState } from './userContext';
-
-const validateChallengeLink = async (value) => {
-  if (!value) {
-    return 'Enter a challenge link';
-  }
-  try {
-    await axios.get(`https://www.geoguessr.com/api/v3/challenges/${value}`);
-    return false;
-  } catch (err) {
-    return 'Enter a valid challenge link';
-  }
-};
-
-const filterChallengeLink = (value) => {
-  const challengeToken = value.split('https://www.geoguessr.com/challenge/')[1];
-  return challengeToken;
-};
-
-const ChallengeLinkField = () => {
-  const {
-    meta: { error, isTouched }, getInputProps,
-  } = useField('token', { validate: validateChallengeLink, filterValue: filterChallengeLink });
-
-  return (
-    <>
-      <input {...getInputProps()} />
-      <p>{isTouched && error ? error : null }</p>
-    </>
-  );
-};
+import { useForm } from 'react-form';
+import { useUserState } from '../userContext';
+import ChallengeLinkField from './ChallengeLinkField';
 
 const NewChallengeForm = ({ battleId, onAfterSubmit }) => {
   const { profile } = useUserState();
@@ -45,7 +15,8 @@ const NewChallengeForm = ({ battleId, onAfterSubmit }) => {
   } = useForm({
     onSubmit: async (values) => {
       try {
-        await axios.post(`${process.env.API_URL}/challenge`, { profile, params: { ...values, battleId } });
+        const { data: { map: { name } } } = await axios.get(`https://www.geoguessr.com/api/v3/challenges/${values.token}`);
+        await axios.post(`${process.env.API_URL}/challenge`, { profile, params: { ...values, battleId, map: { name } } });
         setMeta((meta) => ({ ...meta, error: false }));
         onAfterSubmit();
       } catch (err) {

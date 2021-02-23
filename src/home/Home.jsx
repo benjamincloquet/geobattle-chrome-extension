@@ -3,7 +3,7 @@ import Greeting from '../greeting/Greeting';
 import Divider from '../divider/Divider';
 import JoinBattleButton from '../battle/join/JoinBattleButton';
 import CreateBattleButton from '../battle/create/CreateBattleButton';
-import BattleButton from '../battle/BattleButton';
+import BattlesButton from '../battle/BattlesButton';
 import './Home.scss';
 
 const Home = () => (
@@ -14,7 +14,7 @@ const Home = () => (
     <div className="home">
       <JoinBattleButton />
       <CreateBattleButton />
-      <BattleButton />
+      <BattlesButton />
     </div>
   </>
 );
