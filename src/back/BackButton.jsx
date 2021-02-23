@@ -10,8 +10,6 @@ const BackButton = () => {
     history.goBack();
   };
 
-  console.log(location);
-
   return location.pathname === '/' ? null : <button type="button" className="back-button" onClick={onClick}>Back</button>;
 };
 

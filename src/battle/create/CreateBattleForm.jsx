@@ -1,28 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import axios from 'axios';
-import { useForm, useField } from 'react-form';
+import { useForm } from 'react-form';
 import { useUserState } from '../../userContext';
-
-const validateBattleName = (value) => {
-  if (!value) {
-    return 'Enter a battle name';
-  }
-  return false;
-};
-
-const BattleNameField = () => {
-  const {
-    meta: { error, isTouched }, getInputProps,
-  } = useField('battleName', { validate: validateBattleName });
-
-  return (
-    <>
-      <input {...getInputProps()} />
-      <p>{isTouched && error ? error : null }</p>
-    </>
-  );
-};
+import BattleNameField from './BattleNameField';
 
 const CreateBattleForm = () => {
   const { profile } = useUserState();
@@ -44,18 +24,14 @@ const CreateBattleForm = () => {
 
   return (
     <Form>
-      <div>
-        <label htmlFor="battleNameField">
-          Battle name :
-          {' '}
-          <BattleNameField />
-        </label>
-      </div>
-      <div>
-        <button type="submit" disabled={!canSubmit}>Create</button>
-      </div>
-      <p>{isSubmitting ? 'Creating...' : null}</p>
-      <p>{isTouched && error ? error : null}</p>
+      <label htmlFor="battleNameField">
+        Battle name :
+        {' '}
+        <BattleNameField />
+      </label>
+      <button type="submit" disabled={!canSubmit}>Create</button>
+      <p className="subtext">{isSubmitting ? 'Creating...' : null}</p>
+      <p className="error">{isTouched && error ? error : null}</p>
     </Form>
   );
 };

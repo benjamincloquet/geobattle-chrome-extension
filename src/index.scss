@@ -5,7 +5,10 @@ html, body {
   height: 400px;
   font-family: 'Roboto', sans-serif;
   color: $black;
-  font-size: 0.875rem;
+}
+
+p {
+  font-size: 14px;
 }
 
 button {
@@ -26,4 +29,28 @@ button {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Slab', sans-serif;
   color: $blue;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  & label {
+    font-size: 1rem;
+  }
+
+  & button {
+    margin: 1rem 0;
+    background: $green;
+
+    &:hover {
+      background: rgba($green, 0.9);
+    }
+  }
+
+  & .error {
+    color: $red;
+  }
 }
