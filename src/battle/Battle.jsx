@@ -26,30 +26,6 @@ const Battle = () => {
               {challenges.map((challenge, index) => (
                 <Challenge key={challenge.id} challenge={challenge} index={index} />
               ))}
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
-              <Challenge challenge={{ token: 'a', map: { name: 'zgeg' } }} index={1} />
             </div>
             <Divider />
           </>
