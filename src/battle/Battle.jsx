@@ -14,22 +14,24 @@ const Battle = () => {
   const { battleId } = useParams();
   const { battle, challenges, refresh } = useFetchBattle(battleId);
 
+  const renderChallenges = () => (challenges.length > 0 ? (
+    <>
+      <div className="battle__challenges">
+        {challenges.map((challenge, index) => (
+          <Challenge key={challenge.id} challenge={challenge} index={index} />
+        ))}
+      </div>
+      <Divider />
+    </>
+  ) : null);
+
   const renderBattle = () => (
     <>
       <h1 className="title">{battle.name}</h1>
       <p className="battle__id">{battleId}</p>
       <Divider />
       <div className="battle">
-        {challenges.length > 0 ? (
-          <>
-            <div className="battle__challenges">
-              {challenges.map((challenge, index) => (
-                <Challenge key={challenge.id} challenge={challenge} index={index} />
-              ))}
-            </div>
-            <Divider />
-          </>
-        ) : null }
+        {renderChallenges()}
         <h1 className="title">Add a challenge</h1>
         {profile.id === battle.profileId
           ? (

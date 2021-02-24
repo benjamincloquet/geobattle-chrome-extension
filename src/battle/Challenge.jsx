@@ -10,7 +10,7 @@ const Challenge = ({ challenge, index }) => {
   return (
     <>
       <p>
-        {`Challenge ${index} : `}
+        {`Challenge ${index + 1} : `}
         <a href="blank" onClick={onClick}>{challenge.map.name}</a>
       </p>
     </>
