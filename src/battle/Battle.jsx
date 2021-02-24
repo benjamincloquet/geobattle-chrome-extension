@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -25,9 +26,14 @@ const Battle = () => {
     </>
   ) : null);
 
+  const onBattleNameClick = () => {
+    const url = `${process.env.SITE_URL}/battle/${battle.id}`;
+    chrome.tabs.create({ url });
+  };
+
   const renderBattle = () => (
     <>
-      <h1 className="title">{battle.name}</h1>
+      <a href="" onClick={onBattleNameClick}><h1 className="title">{battle.name}</h1></a>
       <p className="battle__id">{battleId}</p>
       <Divider />
       <div className="battle">
