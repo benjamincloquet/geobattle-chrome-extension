@@ -1,5 +1,6 @@
 const GEOGUESSR_API_URL = 'https://www.geoguessr.com/api/v3';
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://geo-battle.herokuapp.com/api';
+const DEV_API_URL = 'http://localhost:5000/api';
 
 const isChallengeURL = (url) => url.includes('challenges/') && !url.includes('invite');
 
