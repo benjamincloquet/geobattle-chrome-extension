@@ -37,7 +37,7 @@ const getGameToken = async (challengeToken) => {
   }
 };
 
-const sendResult = async (token, result) => {
+const sendResult = async (token, player) => {
   try {
     const options = {
       method: 'POST',
@@ -45,7 +45,7 @@ const sendResult = async (token, result) => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ token, result }),
+      body: JSON.stringify({ token, player }),
     };
     await fetch(`${API_URL}/result`, options);
   } catch (err) {
@@ -57,7 +57,12 @@ const onGameResult = (token) => async ({ method, url }) => {
   if (method === 'POST') {
     try {
       const res = await fetch(url);
-      const result = await res.json();
+      const { player } = await res.json();
+      const result = {
+        profileId: player.id,
+        nick: player.nick,
+        guesses: player.guesses,
+      };
       console.log(await sendResult(token, result));
       if (result.state === 'finished') {
         // remove listener
