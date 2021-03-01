@@ -1,6 +1,5 @@
 const GEOGUESSR_API_URL = 'https://www.geoguessr.com/api/v3';
 const API_URL = 'https://geo-battle.herokuapp.com/api';
-const DEV_API_URL = 'http://localhost:5000/api';
 
 const isChallengeURL = (url) => url.includes('challenges/') && !url.includes('invite');
 
@@ -37,7 +36,7 @@ const getGameToken = async (challengeToken) => {
   }
 };
 
-const sendResult = async (token, player) => {
+const sendResult = async (result) => {
   try {
     const options = {
       method: 'POST',
@@ -45,7 +44,7 @@ const sendResult = async (token, player) => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ token, player }),
+      body: JSON.stringify({ result }),
     };
     await fetch(`${API_URL}/result`, options);
   } catch (err) {
@@ -57,14 +56,27 @@ const onGameResult = (token) => async ({ method, url }) => {
   if (method === 'POST') {
     try {
       const res = await fetch(url);
-      const { player } = await res.json();
-      const result = {
-        profileId: player.id,
-        nick: player.nick,
-        guesses: player.guesses,
-      };
-      console.log(await sendResult(token, result));
-      if (result.state === 'finished') {
+      const {
+        roundCount,
+        state,
+        player: {
+          id,
+          nick,
+          pin,
+          guesses,
+        },
+      } = await res.json();
+      await sendResult({
+        challengeToken: token,
+        roundCount,
+        player: {
+          profileId: id,
+          nick,
+          avatarUrl: pin.url,
+        },
+        guesses,
+      });
+      if (state === 'finished') {
         // remove listener
       }
     } catch (err) {
